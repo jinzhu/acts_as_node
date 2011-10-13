@@ -6,12 +6,12 @@ require "acts_as_node/version"
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "acts_as_node"
-  s.version     = ActsAsNode::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of ActsAsNode."
-  s.description = "TODO: Description of ActsAsNode."
+  s.version     = '0.0.1'
+  s.authors     = ["Jinzhu"]
+  s.email       = ["wosmvp@gmail.com"]
+  s.homepage    = "https://github.com/jinzhu/acts_as_node"
+  s.summary     = "ActsAsNode"
+  s.description = "ActsAsNode"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
