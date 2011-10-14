@@ -1,5 +1,5 @@
-module ActsAs
-  class Node < Rails::Engine
+module Acts
+  class AsNode < Rails::Engine
     module Base
       def self.included(base)
         base.extend ClassMethods
@@ -14,11 +14,11 @@ module ActsAs
 
           belongs_to options[:name], :class_name => 'Node'
 
-          compatible_default_scope %(where("/* SOFT_DELETE_DEFAULT_SCOPE */ `#{self.table_name}`.`#{options[:foreign_key]}` = ?", Node.current))
+          compatible_default_scope %(where("/* SOFT_DELETE_DEFAULT_SCOPE */ `#{self.table_name}`.`#{options[:foreign_key]}` = ?", ::Node.current))
 
           before_save :_assign_node_id
-          def _assign_node_id
-            self.send("#{options[:foreign_key]}=", Node.current.id)
+          define_method "_assign_node_id" do |*opts|
+            self.send("#{options[:foreign_key]}=", ::Node.current.id)
           end
         end
 
@@ -50,8 +50,8 @@ module ActsAs
       end
     end
 
-    initializer "acts_as_node" do
-      ActiveRecord::Base.send :include, ::ActsAs::Node::Base
+    initializer :insert_acts_as_node, :before => :load_config_initializers do
+      ActiveRecord::Base.send :include, ::Acts::AsNode::Base
     end
   end
 end
