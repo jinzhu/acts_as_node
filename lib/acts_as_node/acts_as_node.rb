@@ -18,7 +18,7 @@ module Acts
 
           before_save :_assign_node_id
           define_method "_assign_node_id" do |*opts|
-            self.send("#{options[:foreign_key]}=", ::Node.current.id)
+            self.send("#{options[:foreign_key]}=", ::Node.current.id) if self.send(options[:foreign_key]).blank?
           end
         end
 

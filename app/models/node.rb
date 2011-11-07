@@ -1,11 +1,11 @@
 class Node < ActiveRecord::Base
   class << self
     def current=(language)
-      Thread.current["current_language"] = language
+      Thread.current["_current_node"] = language
     end
 
     def current
-      Thread.current["current_language"] || Node.first
+      Thread.current["_current_node"] || Node.first
     end
   end
 end
