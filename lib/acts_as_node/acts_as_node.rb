@@ -25,7 +25,7 @@ module Acts
         def compatible_default_scope(scope_str)
           if Rails.version >= "3.1.0"
             if public_methods.include?(:default_scope)
-              original_method_name = "_#{rand.object_id}_#{self.name.underscore.gsub('/', '__')}_default_scope"
+              original_method_name = "_#{rand.object_id.abs}_#{self.name.underscore.gsub('/', '__')}_default_scope"
               class_eval <<-SCOPE
                 class << self
                   alias :#{original_method_name} :default_scope
